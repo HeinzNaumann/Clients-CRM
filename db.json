@@ -1,0 +1,32 @@
+{
+  "clientes": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "nombre": "prueba",
+      "empresa": "pruebaa",
+      "email": "prueba@prueba.com",
+      "telefono": "676059182",
+      "notas": "lolallad",
+      "id": 5
+    },
+    {
+      "nombre": "prueba",
+      "empresa": "prueba",
+      "email": "oprueba@peurab.com",
+      "telefono": "6757584393",
+      "notas": "askdlñfjslañkdjfñlskdjf",
+      "id": 6
+    }
+  ]
+}

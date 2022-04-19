@@ -2,8 +2,10 @@ import { Formik, Form, Field } from "formik";
 import React from "react";
 import * as yup from "yup";
 import Alerta from "./Alerta";
-
+import { useNavigate } from "react-router-dom";
 const Formulario = () => {
+  const navigate = useNavigate();
+
   const nuevoClienteSchema = yup.object().shape({
     nombre: yup
       .string()
@@ -22,8 +24,25 @@ const Formulario = () => {
       .typeError("El número no es valido"),
   });
 
-  const handleSubmit = (valores) => {
-    console.log(valores);
+  const handleSubmit = async (valores) => {
+    try {
+      const url = "http://localhost:3005/clientes";
+
+      const respuesta = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(valores),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(respuesta);
+      const resultado = await respuesta.json();
+      console.log(resultado);
+
+      navigate("/clientes");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="bg-white- mt-10 px-5 py-10 rounder-md shadow-md md:w-3/4 mx-auto">
@@ -39,8 +58,9 @@ const Formulario = () => {
           telefono: "",
           notas: "",
         }}
-        onSubmit={(values) => {
-          handleSubmit(values);
+        onSubmit={async (values, { resetForm }) => {
+          await handleSubmit(values);
+          resetForm();
         }}
         validationSchema={nuevoClienteSchema}
       >
