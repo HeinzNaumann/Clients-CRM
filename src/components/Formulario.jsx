@@ -39,8 +39,6 @@ const Formulario = ({ cliente, cargando }) => {
             "Content-Type": "application/json",
           },
         });
-
-        navigate("/clientes");
       } else {
         const url = import.meta.env.VITE_API_URL;
 
@@ -52,6 +50,8 @@ const Formulario = ({ cliente, cargando }) => {
           },
         });
       }
+
+      navigate("/clientes");
     } catch (error) {
       console.log(error);
     }

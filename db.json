@@ -1,3 +1,68 @@
 {
-  "clientes": []
+  "clientes": [
+    {
+      "nombre": "pepe",
+      "empresa": "coca cola",
+      "email": "pepe@pepe.es",
+      "telefono": "657759752",
+      "notas": "Eres el amo",
+      "id": 1
+    },
+    {
+      "nombre": "pepe2322",
+      "empresa": "coca cola",
+      "email": "pepe@pepe.es",
+      "telefono": "657759752",
+      "notas": "Eres el amo",
+      "id": 2
+    },
+    {
+      "nombre": "pepe",
+      "empresa": "coca cola",
+      "email": "pepe@pepe.es",
+      "telefono": "657759752",
+      "notas": "Eres el amo",
+      "id": 3
+    },
+    {
+      "nombre": "pepe",
+      "empresa": "coca cola",
+      "email": "pepe@pepe.es",
+      "telefono": "657759752",
+      "notas": "Eres el amo",
+      "id": 4
+    },
+    {
+      "nombre": "pepe",
+      "empresa": "coca cola",
+      "email": "pepe@pepe.es",
+      "telefono": "657759752",
+      "notas": "Eres el amo",
+      "id": 5
+    },
+    {
+      "nombre": "pree",
+      "empresa": "sdalkfn",
+      "email": "lskdfna@ldaksfj.cm",
+      "telefono": "65656565",
+      "notas": "sadfasdf",
+      "id": 6
+    },
+    {
+      "nombre": "fafa",
+      "empresa": "adfsdfds",
+      "email": "dsfasdffsadf@sdafdsf.com",
+      "telefono": "657599855",
+      "notas": "fsadfssdf",
+      "id": 7
+    },
+    {
+      "nombre": "fasdf",
+      "empresa": "dfasdf",
+      "email": "sddddfasdfasd@fadddsdfañls.com",
+      "telefono": "65775985",
+      "notas": "fasdfs",
+      "id": 8
+    }
+  ]
 }
