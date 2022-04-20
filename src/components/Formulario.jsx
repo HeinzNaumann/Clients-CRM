@@ -3,7 +3,8 @@ import React from "react";
 import * as yup from "yup";
 import Alerta from "./Alerta";
 import { useNavigate } from "react-router-dom";
-const Formulario = () => {
+import Spinner from "./Spinner";
+const Formulario = ({ cliente, cargando }) => {
   const navigate = useNavigate();
 
   const nuevoClienteSchema = yup.object().shape({
@@ -26,38 +27,56 @@ const Formulario = () => {
 
   const handleSubmit = async (valores) => {
     try {
-      const url = "http://localhost:3005/clientes";
+      let respuesta;
+      if (cliente.id) {
+        // Editar un registro
+        const url = `http://localhost:3005/clientes/${cliente.id}`;
 
-      const respuesta = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify(valores),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(respuesta);
-      const resultado = await respuesta.json();
-      console.log(resultado);
+        respuesta = await fetch(url, {
+          method: "PUT",
+          body: JSON.stringify(valores),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      navigate("/clientes");
+        navigate("/clientes");
+      } else {
+        const url = "http://localhost:3005/clientes";
+
+        respuesta = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(valores),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
     } catch (error) {
       console.log(error);
     }
+
+    await respuesta.json();
+
+    navigate("/clientes");
   };
-  return (
+  return cargando ? (
+    <Spinner />
+  ) : (
     <div className="bg-white- mt-10 px-5 py-10 rounder-md shadow-md md:w-3/4 mx-auto">
       <h1 className="text-gray-600 font-bold text-xl uppercase text-center">
         {" "}
-        Agregar Cliente
+        {cliente?.nombre ? "Editar Cliente" : "Agregar Cliente"}
       </h1>
       <Formik
         initialValues={{
-          nombre: "",
-          empresa: "",
-          email: "",
-          telefono: "",
-          notas: "",
+          nombre: cliente?.nombre ?? "",
+          empresa: cliente?.empresa ?? "",
+          email: cliente?.email ?? "",
+          telefono: cliente?.telefono ?? "",
+          notas: cliente?.notas ?? "",
         }}
+        enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           await handleSubmit(values);
           resetForm();
@@ -144,7 +163,7 @@ const Formulario = () => {
 
               <input
                 type="submit"
-                value="Agregar Cliente"
+                value={cliente?.nombre ? "Editar Cliente" : "Agregar Cliente"}
                 className="mt-5 w-full bg-blue-800 p-3 text-white uppercase font-bold text-lg"
               />
             </Form>
@@ -153,6 +172,11 @@ const Formulario = () => {
       </Formik>
     </div>
   );
+};
+
+Formulario.defaultProps = {
+  cliente: {},
+  cargando: false,
 };
 
 export default Formulario;
